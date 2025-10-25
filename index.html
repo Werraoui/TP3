@@ -27,7 +27,7 @@
                 
 				<div>
 				<!-- filtrage par categorie -->
-				 <label>Cherchez la pièce par categorie: </label>
+				<label>Cherchez la pièce par categorie: </label>
 				<select v-model="categorie_piece">
 					<option value="Électricité" >Électricité</option>
 					<option value="Filtration">Filtration</option>
@@ -90,6 +90,7 @@
 				<img :src="p.image">
 				<button v-on:click="ajouterAuPanier(p)">Ajouter au panier</button>
 			 </div>
+			 <button>ajouter au panier</button>
 			</section>
 
 			
