@@ -88,7 +88,7 @@
 				<p>Categorie:{{p.categorie}}</p>
 				<p>Disponible : {{p.disponibilite}}</p>
 				<img :src="p.image">
-				<button @click="ajouterAuPanier(p)">Ajouter au panier</button>
+				<button v-on:click="ajouterAuPanier(p)">Ajouter au panier</button>
 			 </div>
 			</section>
 
