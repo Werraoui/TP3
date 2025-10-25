@@ -67,7 +67,15 @@
 				</select>
 				</div>
 
-
+				<section class="panier">
+				<h3>Panier</h3>
+				<ul>
+					<li v-for="item in panier" :key="item.id">
+						{{item.nom}} - {{item.prix}} DH
+					</li>
+				</ul>
+				<p>Total: {{totalPanier}}</p>
+			</section>
 				
 			</section>
 
@@ -80,10 +88,12 @@
 				<p>Categorie:{{p.categorie}}</p>
 				<p>Disponible : {{p.disponibilite}}</p>
 				<img :src="p.image">
-
+				<button @click="ajouterAuPanier(p)">Ajouter au panier</button>
 			 </div>
 			 <button>ajouter au panier</button>
 			</section>
+
+			
 
 		</main>
 		<script>
@@ -94,6 +104,7 @@
 						categorie_piece:"",
 						is_dispo : "true",
 						tri : 0,
+						panier:[],
 						pieces:[
 							{
 								"id": 1,
@@ -321,9 +332,18 @@
 						}
 							
                         return filtered_object
+					},
+
+					totalPanier(){
+						return this.panier.reduce((acc,item) => acc + item.prix,0);
 					}
 						
-
+				},
+				methods:{
+					ajouterAuPanier(piece){
+						this.panier.push(piece)
+						alert(`Votre pièce ${piece.nom} a été ajoutée au panier`)
+					}	
 				}
 			})
 			app.mount('#app')
