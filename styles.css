@@ -5,6 +5,7 @@ body {
 	margin: auto;
 	padding: 16px;
 	font-family: 'Montserrat', sans-serif;
+	
 }
 
 header {
@@ -13,10 +14,11 @@ header {
 	align-items: center;
 	margin-bottom: 16px;
 	padding: 8px;
-	background-color: #7451eb;
+	background-color: #77d0eb;
 	text-align: center;
-	color: white;
+	color: black;
 }
+
 header img {
 	height: 60px;
 	margin-left: 1rem;
@@ -37,14 +39,56 @@ main {
 	padding: 8px;
 	min-width: 300px;
 	min-height: 400px;
+	background-color: #77d0eb;
+	
+}
+
+.filtres div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.filtres label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+.fitres input {
+	border-radius: 12px;
+	background-color: #77d0eb;
+
+	
+}
+.fitres select {
+	border-radius: 12px;
+	background-color: #77d0eb;
+
 }
 .filtres h3 {
 	text-align: center;
+	margin-bottom: 15px;
+   font-size: 1.3rem;
+   color: #333;
+   border-bottom: 1px solid #ddd;
+   padding-bottom: 5px;
 }
 
 .fiches {
 	flex: 1;
 	margin: 8px;
+	
+}
+.fiches .pieces {
+	background-color: #77d0eb;
+	border-radius:12px ;
+	margin: 30px;
+	padding: 30px;
+	text-align: center;
+	font-size: larger;
+	text-decoration: underline;
+	font-weight: bolder;
+
+
 }
 .fiches img {
 	max-width: 200px;
