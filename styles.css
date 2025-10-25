@@ -90,10 +90,19 @@ main {
 
 
 }
+
 .fiches img {
-	max-width: 200px;
+	display: block;           
+	margin: 0 auto 10px auto; 
+	max-width: 200px;         
+	height: auto;
+	
 }
 .fiches p {
 	margin-top: 4px;
 	margin-bottom: 4px;
+}
+.fiches button {
+	border-radius: 12px;
+	background-color: #77d0eb;
 }
