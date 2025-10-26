@@ -5,21 +5,328 @@
 		<title>Les Bonnes Pièces</title>
 		<link rel="stylesheet" href="styles.css">
 		<script type="module" src="pieces.js"></script>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		
 	</head>
 	<body>
 		<header>
-			<img src="images/logo-les-bonnes-pieces.png" alt="LOGO">
+			<img src="images/logo.png" alt="LOGO">
 			<h1>Les Bonnes Pièces</h1>
 		</header>
-		<main>
+		<main id="app">
 			<!-- Menu de recherche -->
 			<section class="filtres">
 				<h3>Filtres</h3>
+				<br>
+                 <div>
+				<!-- recherche par nom -->
+				<label>Cherchez la pièce par nom : </label>
+				<input type="text" placeholder="Filtre à huile" v-model="nom_recherche">
+				</div>
+				<br>
+                
+				<div>
+				<!-- filtrage par categorie -->
+				 <label>Cherchez la pièce par categorie: </label>
+				<select v-model="categorie_piece">
+					<option value="Électricité" >Électricité</option>
+					<option value="Filtration">Filtration</option>
+					<option value="Moteur">Moteur</option>
+					<option value="Freinage">Freinage</option>
+					<option value="Refroidissement">Refroidissement</option>
+					<option value="Suspension">Suspension</option>
+					<option value="Sécurité">Sécurité</option>
+					<option value="Transmission">Transmission</option>
+					<option value="Carburant">Carburant</option>
+					<option value="Carrosserie">Carrosserie</option>
+					<option value="Échappement">Échappement</option>
+					<option value="Direction">Direction</option>
+				</select>
+				</div>
+				<br>
+                 
+				<div>
+				<!-- filtrage par disponibilite -->
+				<label>Cherchez la pièce par disponibilite: </label>
+
+				 <select v-model="is_dispo">
+					<option value="">Tous</option>
+					<option value="true">Disponible</option>
+					<option value="false">Épuisé</option>
+
+				 </select>
+                </div>
+				<br>
+				<div>
+				<!--Tri des pièces-->
+				<label>Triez les pièces par prix :</label>
+				<select v-model="tri">
+					<option :value= "2">De plus grand au plus petit</option>
+					<option :value= "1">De plus petit au plus grand</option>
+
+				</select>
+				</div>
+
+
+				
 			</section>
 
 			<!-- Fiches produits -->
 			<section class="fiches">
+				<!-- affichage des pieces -->
+			 <div class="pieces" v-for="p in filtres_pieces" :key="p.id" >
+				<p>Nom:{{p.nom}}</p>
+				<p>Prix:{{p.prix}}</p>
+				<p>Categorie:{{p.categorie}}</p>
+				<p>Disponible : {{p.disponibilite}}</p>
+				<img :src="p.image">
+
+			 </div>
 			</section>
+
 		</main>
+		<script>
+			const app = Vue.createApp({
+				data(){
+					return {
+						nom_recherche:"",
+						categorie_piece:"",
+						is_dispo : "true",
+						tri : 0,
+						pieces:[
+							{
+								"id": 1,
+								"nom": "Batterie 12V",
+								"prix": 120,
+								"categorie": "Électricité",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/2947/2947925.png"
+							},
+							{
+								"id": 2,
+								"nom": "Filtre à huile",
+								"prix": 15,
+								"categorie": "Filtration",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4853/4853648.png"
+							},
+							{
+								"id": 3,
+								"nom": "Bougies d'allumage (x4)",
+								"prix": 35,
+								"categorie": "Moteur",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149755.png"
+							},
+							{
+								"id": 4,
+								"nom": "Disques de frein (x2)",
+								"prix": 80,
+								"categorie": "Freinage",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/3088/3088578.png"
+							},
+							{
+								"id": 5,
+								"nom": "Courroie de distribution",
+								"prix": 90,
+								"categorie": "Moteur",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/3627/3627485.png"
+							},
+							{
+								"id": 6,
+								"nom": "Pompe à eau",
+								"prix": 70,
+								"categorie": "Refroidissement",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/2346/2346888.png"
+							},
+							{
+								"id": 7,
+								"nom": "Amortisseurs arrière (x2)",
+								"prix": 150,
+								"categorie": "Suspension",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/3770/3770074.png"
+							},
+							{
+								"id": 8,
+								"nom": "Filtre à air",
+								"prix": 20,
+								"categorie": "Filtration",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/2204/2204207.png"
+							},
+							{
+								"id": 9,
+								"nom": "Capteur ABS",
+								"prix": 50,
+								"categorie": "Sécurité",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4375/4375273.png"
+							},
+							{
+								"id": 10,
+								"nom": "Radiateur de refroidissement",
+								"prix": 130,
+								"categorie": "Refroidissement",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/3409/3409728.png"
+							},
+							{
+								"id": 11,
+								"nom": "Alternateur",
+								"prix": 200,
+								"categorie": "Électricité",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/4370/4370788.png"
+							},
+							{
+								"id": 12,
+								"nom": "Démarreur",
+								"prix": 180,
+								"categorie": "Électricité",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149858.png"
+							},
+							{
+								"id": 13,
+								"nom": "Kit d'embrayage",
+								"prix": 220,
+								"categorie": "Transmission",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/3771/3771444.png"
+							},
+							{
+								"id": 14,
+								"nom": "Injecteur de carburant",
+								"prix": 110,
+								"categorie": "Moteur",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149701.png"
+							},
+							{
+								"id": 15,
+								"nom": "Pompe à carburant",
+								"prix": 90,
+								"categorie": "Carburant",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/4129/4129869.png"
+							},
+							{
+								"id": 16,
+								"nom": "Capteur de pression des pneus (TPMS)",
+								"prix": 45,
+								"categorie": "Sécurité",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149913.png"
+							},
+							{
+								"id": 17,
+								"nom": "Rétroviseur extérieur",
+								"prix": 60,
+								"categorie": "Carrosserie",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4935/4935077.png"
+							},
+							{
+								"id": 18,
+								"nom": "Échappement complet",
+								"prix": 250,
+								"categorie": "Échappement",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149768.png"
+							},
+							{
+								"id": 19,
+								"nom": "Vanne EGR",
+								"prix": 140,
+								"categorie": "Moteur",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4460/4460902.png"
+							},
+							{
+								"id": 20,
+								"nom": "Turbo",
+								"prix": 400,
+								"categorie": "Moteur",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/3770/3770005.png"
+							},
+							{
+								"id": 21,
+								"nom": "Joint de culasse",
+								"prix": 75,
+								"categorie": "Moteur",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/3746/3746921.png"
+							},
+							{
+								"id": 22,
+								"nom": "Boîtier de direction",
+								"prix": 300,
+								"categorie": "Direction",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/3771/3771408.png"
+							},
+							{
+								"id": 23,
+								"nom": "Silent bloc de suspension",
+								"prix": 35,
+								"categorie": "Suspension",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149884.png"
+							},
+							{
+								"id": 24,
+								"nom": "Cardan de transmission",
+								"prix": 160,
+								"categorie": "Transmission",
+								"disponibilite": false,
+								"image": "https://cdn-icons-png.flaticon.com/512/3770/3770121.png"
+							},
+							{
+								"id": 25,
+								"nom": "Capteur de position vilebrequin",
+								"prix": 50,
+								"categorie": "Moteur",
+								"disponibilite": true,
+								"image": "https://cdn-icons-png.flaticon.com/512/4149/4149785.png"
+							}
+							]
+					}
+				},
+				computed:{
+
+					filtres_pieces(){
+
+						filtered_object = this.pieces.filter(piece => {
+							//filre nom et filre categorie et filre disponibilite
+
+							return piece.nom.toLowerCase().includes(this.nom_recherche.toLowerCase()) && 
+								   piece.categorie.includes(this.categorie_piece) &&
+								   (this.is_dispo === "" || (piece.disponibilite == (this.is_dispo === "true")))
+						    }
+						);
+							
+						if (this.tri === 1)
+						{
+							filtered_object.sort((a, b) => a.prix - b.prix);
+						}
+						else if (this.tri === 2)
+						{
+							filtered_object.sort((a,b) => b.prix - a.prix);
+						}
+							
+                        return filtered_object
+					}
+						
+
+				}
+			})
+			app.mount('#app')
+
+		</script>
 	</body>
 </html>
